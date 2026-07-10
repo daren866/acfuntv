@@ -25,18 +25,8 @@ android {
         versionName = "1.0.0"
     }
 
-    signingConfigs {
-        getByName("debug") {
-            keyAlias = "myapplication"
-            keyPassword = "password"
-            storeFile = rootProject.file(".github/debug-key.jks")
-            storePassword = "password"
-        }
-    }
-
     buildTypes {
         debug {
-            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
