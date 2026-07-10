@@ -11,7 +11,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,13 +32,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.tv.foundation.lazy.TvLazyColumn
-import androidx.tv.foundation.lazy.TvLazyRow
-import androidx.tv.material3.MaterialTheme
-import androidx.tv.material3.Text
-import androidx.tv.material3.WideButton
-import androidx.tv.material3.WideCard
-import androidx.tv.material3.rememberWideCardState
 
 data class VideoItem(
     val id: Long,
@@ -56,7 +61,7 @@ fun MainActivityContent() {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        TvLazyColumn(
+        LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(24.dp),
             contentPadding = androidx.compose.foundation.layout.PaddingValues(
@@ -69,27 +74,27 @@ fun MainActivityContent() {
             item {
                 TopHeader()
             }
-            
+
             item {
                 CategoryTabs()
             }
-            
+
             item {
                 SectionTitle(title = "推荐")
             }
-            
+
             item {
                 VideoGrid()
             }
-            
+
             item {
                 SectionTitle(title = "热门")
             }
-            
+
             item {
                 HorizontalVideoList(title = "热门动画")
             }
-            
+
             item {
                 HorizontalVideoList(title = "游戏直播")
             }
@@ -123,7 +128,7 @@ fun TopHeader() {
                 fontWeight = FontWeight.Normal
             )
         }
-        
+
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -136,15 +141,18 @@ fun TopHeader() {
 
 @Composable
 fun HeaderButton(text: String) {
-    WideButton(
+    Button(
         onClick = {},
         modifier = Modifier.padding(4.dp),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(8.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFF3A3A3A),
+            contentColor = Color.White
+        )
     ) {
         Text(
             text = text,
-            fontSize = 18.sp,
-            color = Color.White
+            fontSize = 18.sp
         )
     }
 }
@@ -156,15 +164,18 @@ fun CategoryTabs() {
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         categories.forEachIndexed { index, category ->
-            WideButton(
+            Button(
                 onClick = {},
                 modifier = Modifier.padding(4.dp),
-                shape = RoundedCornerShape(4.dp)
+                shape = RoundedCornerShape(4.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (index == 0) Color(0xFFFF2C55) else Color(0xFF3A3A3A),
+                    contentColor = Color.White
+                )
             ) {
                 Text(
                     text = category,
-                    fontSize = 20.sp,
-                    color = if (index == 0) Color(0xFFFF2C55) else Color.White
+                    fontSize = 20.sp
                 )
             }
         }
@@ -184,27 +195,31 @@ fun SectionTitle(title: String) {
 
 @Composable
 fun VideoGrid() {
-    androidx.compose.foundation.lazy.LazyVerticalGrid(
-        columns = androidx.compose.foundation.lazy.GridCells.Fixed(3),
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(3),
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(24.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        items(mockVideos.size) { index ->
-            VideoCard(video = mockVideos[index])
+        items(mockVideos) { video ->
+            VideoCard(video = video)
         }
     }
 }
 
 @Composable
 fun VideoCard(video: VideoItem) {
-    val cardState = rememberWideCardState()
-    
-    WideCard(
+    Card(
         onClick = {},
         modifier = Modifier
             .width(320.dp),
-        state = cardState
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF2A2A2A)
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 4.dp
+        )
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -230,9 +245,9 @@ fun VideoCard(video: VideoItem) {
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             Text(
                 text = video.title,
                 color = Color.White,
@@ -241,9 +256,9 @@ fun VideoCard(video: VideoItem) {
                 maxLines = 2,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
-            
+
             Spacer(modifier = Modifier.height(4.dp))
-            
+
             Text(
                 text = "播放量 ${video.playCount}",
                 color = Color(0xFF999999),
@@ -258,14 +273,14 @@ fun VideoCard(video: VideoItem) {
 fun HorizontalVideoList(title: String) {
     Column {
         SectionTitle(title = title)
-        
+
         Spacer(modifier = Modifier.height(8.dp))
-        
-        TvLazyRow(
+
+        LazyRow(
             horizontalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            items(mockVideos.size) { index ->
-                HorizontalVideoCard(video = mockVideos[index])
+            items(mockVideos) { video ->
+                HorizontalVideoCard(video = video)
             }
         }
     }
@@ -273,13 +288,17 @@ fun HorizontalVideoList(title: String) {
 
 @Composable
 fun HorizontalVideoCard(video: VideoItem) {
-    val cardState = rememberWideCardState()
-    
-    WideCard(
+    Card(
         onClick = {},
         modifier = Modifier
             .width(280.dp),
-        state = cardState
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF2A2A2A)
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 4.dp
+        )
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -305,9 +324,9 @@ fun HorizontalVideoCard(video: VideoItem) {
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             Text(
                 text = video.title,
                 color = Color.White,
@@ -316,9 +335,9 @@ fun HorizontalVideoCard(video: VideoItem) {
                 maxLines = 2,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
-            
+
             Spacer(modifier = Modifier.height(4.dp))
-            
+
             Text(
                 text = "播放量 ${video.playCount}",
                 color = Color(0xFF999999),
