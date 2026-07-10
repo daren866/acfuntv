@@ -38,7 +38,7 @@ android {
 }
 
 base {
-    archivesName.set("Gudao-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
+    archivesName.set("Gudaobaiban-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
 }
 
 dependencies {
