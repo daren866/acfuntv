@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ fun TestScreen() {
             Text(
                 text = "ACFun TV Test",
                 color = Color(0xFFFF2C55),
-                fontSize = androidx.compose.ui.unit.sp(40)
+                fontSize = 40.sp
             )
         }
     }
