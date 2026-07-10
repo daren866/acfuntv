@@ -10,9 +10,8 @@ androidx-activity = "1.13.0"
 androidx-compose-ui = "1.11.4"
 androidx-compose-material3 = "1.4.0"
 androidx-core-splashscreen = "1.2.0"
-androidx-tv-material = "1.2.0"
-androidx-tv-foundation = "1.2.0"
-androidx-tv-material3 = "1.1.0"
+androidx-tv-material = "1.1.0"
+androidx-tv-foundation = "1.0.0"
 
 [libraries]
 google-material = { module = "com.google.android.material:material", version.ref = "google-material" }
@@ -22,7 +21,6 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core-splashscreen" }
 androidx-tv-material = { module = "androidx.tv:tv-material", version.ref = "androidx-tv-material" }
 androidx-tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "androidx-tv-foundation" }
-androidx-tv-material3 = { module = "androidx.tv:tv-material3", version.ref = "androidx-tv-material3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

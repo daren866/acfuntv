@@ -56,7 +56,6 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.tv.material)
     implementation(libs.androidx.tv.foundation)
-    implementation(libs.androidx.tv.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
 

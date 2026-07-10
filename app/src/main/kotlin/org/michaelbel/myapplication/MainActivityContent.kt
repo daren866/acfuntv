@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalTvMaterial3Api::class)
-
 package org.michaelbel.myapplication
 
 import androidx.compose.foundation.background
@@ -22,12 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.foundation.lazy.TvLazyColumn
+import androidx.tv.foundation.lazy.TvLazyRow
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
-import androidx.tv.material3.TvLazyColumn
-import androidx.tv.material3.TvLazyRow
-import androidx.tv.material3.TvTabRow
 import androidx.tv.material3.WideButton
 import androidx.tv.material3.WideCard
 import androidx.tv.material3.rememberWideCardState
@@ -142,32 +138,33 @@ fun TopHeader() {
 fun HeaderButton(text: String) {
     WideButton(
         onClick = {},
-        shape = RoundedCornerShape(8.dp),
-        colors = androidx.tv.material3.WideButtonDefaults.colors(
-            containerColor = Color(0xFF3A3A3A),
-            contentColor = Color.White
-        )
+        modifier = Modifier.padding(4.dp),
+        shape = RoundedCornerShape(8.dp)
     ) {
         Text(
             text = text,
-            fontSize = 18.sp
+            fontSize = 18.sp,
+            color = Color.White
         )
     }
 }
 
 @Composable
 fun CategoryTabs() {
-    TvTabRow(selectedTabIndex = 0) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         categories.forEachIndexed { index, category ->
-            androidx.tv.material3.Tab(
-                selected = index == 0,
-                onFocus = {},
-                onClick = {}
+            WideButton(
+                onClick = {},
+                modifier = Modifier.padding(4.dp),
+                shape = RoundedCornerShape(4.dp)
             ) {
                 Text(
                     text = category,
                     fontSize = 20.sp,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                    color = if (index == 0) Color(0xFFFF2C55) else Color.White
                 )
             }
         }
