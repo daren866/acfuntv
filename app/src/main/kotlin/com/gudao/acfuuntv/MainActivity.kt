@@ -1,11 +1,11 @@
-package org.michaelbel.myapplication
+package com.gudao.acfuuntv
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import org.michaelbel.myapplication.ui.AppTheme
+import com.gudao.acfuuntv.ui.AppTheme
 
 class MainActivity: ComponentActivity() {
 
