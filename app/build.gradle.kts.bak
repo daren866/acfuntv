@@ -46,7 +46,7 @@ android {
 }
 
 base {
-    archivesName.set("Gudao-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
+    archivesName.set("MyApplication-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
 }
 
 dependencies {
