@@ -46,7 +46,7 @@ android {
 }
 
 base {
-    archivesName.set("MyApplication-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
+    archivesName.set("Gudao-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
 }
 
 dependencies {
@@ -54,9 +54,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.tv.material)
-    implementation(libs.androidx.tv.foundation)
-    implementation(libs.androidx.tv.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
 
